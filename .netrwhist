@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/Jason/Sites/proudcloud/sorting_hat'
-let g:netrw_dirhist_2='/Users/Jason/Sites/proudcloud/bookmans'
-let g:netrw_dirhist_3='/Users/Jason/Sites/proudcloud/auctions-a-la-carte'
-let g:netrw_dirhist_4='/Users/Jason/Sites/proudcloud/tww'
-let g:netrw_dirhist_5='/Users/Jason/Sources/juggernaut'
-let g:netrw_dirhist_6='/Users/Jason/Sites/mashupgarage'
-let g:netrw_dirhist_7='/Users/Jason/Sites/mashupgarage/sl'
-let g:netrw_dirhist_8='/Users/Jason/Sites/mashupgarage/slepton'
-let g:netrw_dirhist_9='/Users/Jason/Sites/proudcloud/alc-experimental'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/Jason/Sites/proudcloud/mission_control'
+let g:netrw_dirhist_2='/Users/Jason/Sites/mashupgarage/slepton'
+let g:netrw_dirhist_3='/Users/Jason/Sites/devise-1.1.7'
+let g:netrw_dirhist_4='/Users/Jason/Sites/mashupgarage/slepton'
