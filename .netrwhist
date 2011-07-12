@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/Jason/Sites/proudcloud/mission_control'
-let g:netrw_dirhist_2='/Users/Jason/Sites/mashupgarage/slepton'
-let g:netrw_dirhist_3='/Users/Jason/Sites/devise-1.1.7'
-let g:netrw_dirhist_4='/Users/Jason/Sites/mashupgarage/slepton'
-let g:netrw_dirhist_5='/Users/Jason/Sites/proudcloud/mission_control'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/Jason/Sites/mashupgarage/ths'
+let g:netrw_dirhist_2='/Users/Jason/Sites/misc/capybara-0.4.1.2'
+let g:netrw_dirhist_3='/Users/Jason/Sites/mashupgarage/ths'
+let g:netrw_dirhist_4='/Users/Jason/Sites/proudcloud/nowshowing'
+let g:netrw_dirhist_5='/Users/Jason/Sites/gems/money'
+let g:netrw_dirhist_6='/Users/Jason/Sites/slepton'

@@ -74,7 +74,7 @@ imap <C-space> <Esc
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-map :f :find
+map :f :find<Space>
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -95,6 +95,8 @@ map <Leader>n :NERDTreeToggle<CR>
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+map <Leader>w :w <C-R>=expand("%:p:h") . "/" <CR>
 
 " Opens a tab edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>t
