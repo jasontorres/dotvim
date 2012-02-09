@@ -69,7 +69,7 @@ imap <C-space> <Esc>
 
 " ctrl+a to append mode
 nnoremap <C-space> a
-imap <C-space> <Esc
+imap <C-space> <Esc>
 
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
@@ -92,6 +92,28 @@ map <leader>tm :tabmove
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 
+" Command-T mappings for rails
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gr :left :vsplit config/routes.rb<cr>
+map <leader>gg :left :vsplit Gemfile<cr>
+map <leader>gl :left :vsplit config/locales/en.yml<cr>
+map <leader>ge :CommandTFlush<cr>\|:CommandT config<cr>
+
+" Open files with <leader>f
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+
+" Open files, limited to the directory of the current file, with <leader>gf
+" This requires the %% mapping found below.
+map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -101,11 +123,21 @@ map <Leader>w :w <C-R>=expand("%:p:h") . "/" <CR>
 " Opens a tab edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>t
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map <Leader>vs :left :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
+" Make it easy to navigate on insert mode
+imap <C-k> <Up>
+imap <C-j> <Down>
+imap <C-h> <Left>
+imap <C-l> <Right>
+
+map <Leader>c :cd ~/Sites/
+
+" Disable arrow keys
 "inoremap  <Up>     <NOP>
 "inoremap  <Down>   <NOP>
 "inoremap  <Left>   <NOP>
@@ -115,8 +147,6 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 "noremap   <Left>   <NOP>
 "noremap   <Right>  <NOP>
 
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
 
 " Controversial...swap colon and semicolon for easier commands
 "nnoremap ; :
@@ -130,7 +160,7 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+"autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
@@ -139,10 +169,38 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+
+" Remap the tab key to do autocompletion or indentation depending on the
+" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+" When hitting <;>, complete a snippet if there is one; else, insert an actual
+" <;>
+function! InsertSnippetWrapper()
+    let inserted = TriggerSnippet()
+    if inserted == "\<tab>"
+        return ";"
+    else
+        return inserted
+    endif
+endfunction
 
 set background=dark
+set listchars=tab:▸\
+set cursorline
+
+set antialias                     " MacVim: smooth fonts.
+set encoding=utf-8                " Use UTF-8 everywhere.
+set background=dark               " Background.
+
+colorscheme mansion
+
