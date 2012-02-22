@@ -1,10 +1,11 @@
-set gfn=Monaco:h10.00
-colorscheme solarized
+"set gfn=Monaco:h12.00
+set gfn=Menlo:h11.00
 
-set antialias                     " MacVim: smooth fonts.
+
+"set antialias                     " MacVim: smooth fonts.
 set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
-set background=dark               " Background.
+"set background=dark               " Background.
 
 
 if has("gui_macvim")
@@ -15,6 +16,10 @@ if has("gui_macvim")
   " Create a vertical split
   map <D-d> :vsp<CR> 
 
+  map <D-S-d> :sp<CR>   
+
+  map <S-f>   :Rfind<CR>
+ 
   map :log :ConqueTermSplit tail -f log/development.log<CR>
   map :console :ConqueTermSplit bash<CR>
 
@@ -32,8 +37,8 @@ if has("gui_macvim")
   vmap <D-S-Up> k
 
   " Indent Text
-  vmap <D-]> >gv
-  vmap <D-[> <gv
+  vmap <D-}> >gv
+  vmap <D-{> <gv
 
   " Map \ to cycle splits instead of tabs
   cmap <Leader>\ <C-w>w
@@ -66,6 +71,7 @@ if has("gui_macvim")
     setlocal listchars=tab:\ \ 
   endfunction
   
+  set directory=$HOME/.vim/tmp/  " Keep swap files in one location
 
 endif
 
