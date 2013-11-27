@@ -316,7 +316,7 @@ endfunction
 
 call s:add_methods('readable',['end_of','last_opening_line','last_method_line','last_method','last_format','define_pattern'])
 
-let s:view_types = split('rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn,slim',',')
+let s:view_types = split('rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn,slim,hamljs',',')
 
 function! s:viewspattern()
   return '\%('.join(s:view_types,'\|').'\)'

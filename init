@@ -1,0 +1,6 @@
+cd bundle/
+git clone git://github.com/tpope/vim-rake.git
+git clone git://github.com/tpope/vim-rails.git
+git clone git://github.com/tpope/vim-rvm.git
+git clone git://github.com/tpope/vim-commentary.git
+git clone git://github.com/tpope/vim-repeat.git
