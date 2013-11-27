@@ -110,6 +110,7 @@ map <leader>ge :CommandTFlush<cr>\|:CommandT config<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
 
+map <leader><leader> <C-^>
 " Open files, limited to the directory of the current file, with <leader>gf
 " This requires the %% mapping found below.
 map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
@@ -123,15 +124,22 @@ map <Leader>w :w <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>as :e <C-R>=expand("app/assets/stylesheets") . "/"<CR>
 map <Leader>aj :e <C-R>=expand("app/assets/javascripts") . "/"<CR>
 map <Leader>ai :e <C-R>=expand("app/assets/images") . "/"<CR>
+map <Leader>ac :e <C-R>=expand("app/controllers") . "/"<CR>
+map <Leader>av :e <C-R>=expand("app/views") . "/"<CR>
+map <Leader>am :e <C-R>=expand("app/models") . "/"<CR>
 
 " Opens a tab edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>t
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>vs :left :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
+" Map tab to pane cycle
+nn <Tab> <C-w><C-w>
+
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
 
 " Make it easy to navigate on insert mode
 imap <C-k> <Up>
@@ -139,7 +147,8 @@ imap <C-j> <Down>
 imap <C-h> <Left>
 imap <C-l> <Right>
 
-map <Leader>c :cd ~/Sites/
+map <Leader>cds :cd ~/Sites/
+map <Leader>cdm :cd ~/Sites/mashupgarage/
 
 " Mappings to access buffers (don't use "\p" because a
 " delay before pressing "p" would accidentally paste).
@@ -165,14 +174,14 @@ nnoremap <Leader>0 :10b<CR>
 
 
 " Disable arrow keys
-"inoremap  <Up>     <NOP>
-"inoremap  <Down>   <NOP>
-"inoremap  <Left>   <NOP>
-"inoremap  <Right>  <NOP>
-"noremap   <Up>     <NOP>
-"noremap   <Down>   <NOP>
-"noremap   <Left>   <NOP>
-"noremap   <Right>  <NOP>
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 
 
 " Controversial...swap colon and semicolon for easier commands
@@ -195,7 +204,6 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
-
 
 " Remap the tab key to do autocompletion or indentation depending on the
 " context (from http://www.vim.org/tips/tip.php?tip_id=102)
@@ -221,7 +229,6 @@ function! InsertSnippetWrapper()
     endif
 endfunction
 
-set background=dark
 set listchars=tab:▸\
 set cursorline
 
@@ -229,5 +236,14 @@ set antialias                     " MacVim: smooth fonts.
 set encoding=utf-8                " Use UTF-8 everywhere.
 set background=dark               " Background.
 
-colorscheme mansion
+set mouse=ia
+set clipboard=unnamed
+"colorscheme desert
+"colorscheme solarized
+colorscheme default
+"set gfn=Menlo:h11.00
 
+au BufNewFile,BufRead *.hamljs set filetype=haml
+au BufNewFile,BufRead *.cshtml set filetype=html
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.less set filetype=css
