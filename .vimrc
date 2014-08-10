@@ -240,10 +240,15 @@ set mouse=ia
 set clipboard=unnamed
 "colorscheme desert
 "colorscheme solarized
-colorscheme default
+"colorscheme default
+colorscheme autumn
 "set gfn=Menlo:h11.00
 
 au BufNewFile,BufRead *.hamljs set filetype=haml
+au BufNewFile,BufRead *.erb set filetype=html
 au BufNewFile,BufRead *.cshtml set filetype=html
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.less set filetype=css
+
+" TRAILING WHITESPACES MUST DIE
+autocmd BufWritePre * :%s/\s\+$//e
